@@ -14,7 +14,7 @@ dbinfo
         console.log("connected on DB");
     })
     .catch((err) => {
-        console.log("Soory : ", err);
+        console.log("Sorry : ", err);
     });
 
 db.user = require("../models/User")(dbinfo, Sequelize);

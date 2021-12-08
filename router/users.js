@@ -6,6 +6,33 @@ const jwt = require("jsonwebtoken");
 
 process.env.SECRET_KEY = "secret";
 
+// Get - regroup all USERS
+// Method: GET
+router.get("/", (req, res) => {
+    db.user
+        .findAll()
+        .then((user) => {
+            if (user) {
+                res.status(200).json({
+                    message: "Success all users",
+                    status: res.statusCode,
+                    data: user,
+                });
+            } else {
+                res.status(401).json({
+                    message: "Try again",
+                    status: res.statusCode,
+                });
+            }
+        })
+        .catch((err) => {
+            res.status(404).json({
+                message: "Users not found",
+                status: res.statusCode,
+            });
+        });
+});
+
 // Post - register new USERS
 // Method: POST
 router.post("/register", (req, res) => {
@@ -57,6 +84,7 @@ router.post("/login", (req, res) => {
                     message: "Logged In Success",
                     status: res.statusCode,
                     token: token,
+                    id: user.id,
                 });
             } else {
                 res.status(401).json({
@@ -105,37 +133,6 @@ router.get("/profil/:id", (req, res) => {
         .catch((err) => {
             res.status(401).json({
                 message: "Please Login",
-                status: res.statusCode,
-            });
-        });
-});
-
-// Get - regroup all USERS
-// Method: GET
-router.get("/", (req, res) => {
-    db.user
-        .findAll()
-        .then((user) => {
-            if (user) {
-                let token = jwt.sign(req.body, process.env.SECRET_KEY, {
-                    expiresIn: "60s",
-                });
-                res.status(200).json({
-                    message: "Success all users",
-                    status: res.statusCode,
-                    token: token,
-                    data: user,
-                });
-            } else {
-                res.status(401).json({
-                    message: "Try again",
-                    status: res.statusCode,
-                });
-            }
-        })
-        .catch((err) => {
-            res.status(404).json({
-                message: "Users not found",
                 status: res.statusCode,
             });
         });

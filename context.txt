@@ -1,0 +1,7 @@
+Voici l'énoncé:
+Du coup l'objectif est de créer un mini carnet d'adresse pour "Schtroumpf" avec NodeJS pour le back (Express.js sous forme d'API) 
+avec un front sur angular &  DB Mongo de préférence. 
+
+    -   (Inscription/Connexion/Déconnexion) du "Schtroumpf" par login/mot de passe 
+    -   (Afficher/Modifier) ses informations (âge / famille / race / nourriture) 
+    -   (Ajouter/Supprimer) un ami "Schtroumpf"  à partir d'une liste de schtroumpfs déjà inscrits.
